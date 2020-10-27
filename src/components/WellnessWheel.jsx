@@ -9,48 +9,22 @@ class WellnessWheel extends React.Component {
     colorArr: ["red", "orange", "yellow", "green", "white", "blue", "crimson", "violet"],
   };
 
-  drawCircle() {
-    const { bigRad } = this.state;
-    return (
-      <>
-        <circle cx="0" cy="0" r={bigRad} fill="lightgrey" stroke="grey" />
-        <circle
-          cx="0"
-          cy="0"
-          r={0.8 * bigRad}
-          fill="transparent"
-          stroke="grey"
-        />
-        <circle
-          cx="0"
-          cy="0"
-          r={0.6 * bigRad}
-          fill="transparent"
-          stroke="grey"
-        />
-        <circle
-          cx="0"
-          cy="0"
-          r={0.4 * bigRad}
-          fill="transparent"
-          stroke="grey"
-        />
-        <circle
-          cx="0"
-          cy="0"
-          r={0.2 * bigRad}
-          fill="transparent"
-          stroke="grey"
-        />
-
-        <line x1="-100" y1="0" x2="100" y2="0" stroke="grey" />
-      </>
+  drawCircle(bigRad) {
+    let circles = [];
+    for (let koef = 0.2; koef <= 1; koef += 0.2) {
+      circles.unshift(Math.round(koef * bigRad));
+    }
+    return circles.map((radius, index) => {
+      return (
+        <circle cx="0" cy="0" r={radius} key={index} fill="lightgrey" stroke="grey" />        
+      )
+    }
     );
   }
 
   slice() {
     let slices = [];
-    const { radiiArr, numberOfSlices, colorArr } = this.state;
+    const { radiiArr, numberOfSlices, colorArr, bigRad } = this.state;
     for (let i = 0; i < numberOfSlices; i++) {
       slices.push({
         percent: 1 / numberOfSlices,
@@ -67,8 +41,8 @@ class WellnessWheel extends React.Component {
       return [x, y];
     }
 
-    let arr = [];
-    arr = slices.map((slice) => {
+    return slices.map((slice) => {
+      let radKoef = 1 / slice.radius * bigRad;
       const [startX, startY] = getCoordinatesForPercent(
         cumulativePercent,
         slice.radius
@@ -84,9 +58,13 @@ class WellnessWheel extends React.Component {
         `A ${slice.radius} ${slice.radius} 0  ${largeArcFlag} 1 ${endX} ${endY}`, // Arc
         "L 0 0", // Line
       ].join(" ");
-      return <path d={pathData} fill={slice.color} key={pathData} />;
+      return (
+        <>
+          <path d={pathData} fill={slice.color} key={pathData} />
+          <line x1={endX * radKoef} y1={endY * radKoef} x2={-endX * radKoef} y2={-endY * radKoef} stroke="grey" key={endX + endY} />
+        </>
+      );
     });
-    return arr;
   }
 
   render() {
@@ -99,7 +77,7 @@ class WellnessWheel extends React.Component {
         `}
         width={200}
       >
-        {this.drawCircle()}
+        {this.drawCircle(bigRad)}
         {this.slice()}
       </svg>
     );
