@@ -6,7 +6,7 @@ class WellnessWheel extends React.Component {
     bigRad: 100,
     radiiArr: this.props.radiiArr.map((rad) => rad * 20),
     numberOfSlices: 8,
-    colorArr: ["red", "orange", "yellow", "green", "white", "blue", "crimson", "violet"],
+    colorArr: ['#f46464', "#fed6a8", "#53b89a", "#008080", "#38a9c7", "#445588", "#d43e8c", "#bd121b"],
   };
 
   drawCircle(bigRad) {
@@ -16,15 +16,47 @@ class WellnessWheel extends React.Component {
     }
     return circles.map((radius, index) => {
       return (
-        <circle cx="0" cy="0" r={radius} key={index} fill="lightgrey" stroke="grey" />        
+        <circle cx="0" cy="0" r={radius} key={index} fill="#dee2e6" stroke="grey" />        
       )
     }
     );
   }
 
+  getCoordinatesForPercent(percent, radius) {
+      const x = radius * Math.cos(2 * Math.PI * percent);
+      const y = radius * Math.sin(2 * Math.PI * percent);
+      return [x, y];
+    }
+
+  drawLines() {
+    let lines = [];
+    const { bigRad, numberOfSlices } = this.state;
+    
+    let cumulativePercent = 0;
+    for(let i = 0; i < numberOfSlices; i++) {
+      lines.push(cumulativePercent);
+      cumulativePercent += 1 / numberOfSlices;
+    }
+
+    return lines.map((line) => {
+      const [x1, y1] = this.getCoordinatesForPercent(line, bigRad);
+      return (
+        <line x1={x1} y1={y1} x2={0} y2={0} stroke="grey" key={line} />
+      )
+    })
+  }
+
+  addLabels() {
+    const dimensions = ["financial", "emotional", "occupational", "physical", "intellectual", "social", "spiritual", "environmental"]
+    return (
+      <text x="20" y="35" transform="rotate(45)">text</text>
+    )
+  }
+
   slice() {
     let slices = [];
-    const { radiiArr, numberOfSlices, colorArr, bigRad } = this.state;
+    const { radiiArr, numberOfSlices, colorArr } = this.state;
+    console.log(radiiArr);
     for (let i = 0; i < numberOfSlices; i++) {
       slices.push({
         percent: 1 / numberOfSlices,
@@ -35,20 +67,19 @@ class WellnessWheel extends React.Component {
 
     let cumulativePercent = 0;
 
-    function getCoordinatesForPercent(percent, radius) {
-      const x = radius * Math.cos(2 * Math.PI * percent);
-      const y = radius * Math.sin(2 * Math.PI * percent);
-      return [x, y];
-    }
+    // function getCoordinatesForPercent(percent, radius) {
+    //   const x = radius * Math.cos(2 * Math.PI * percent);
+    //   const y = radius * Math.sin(2 * Math.PI * percent);
+    //   return [x, y];
+    // }
 
     return slices.map((slice) => {
-      let radKoef = 1 / slice.radius * bigRad;
-      const [startX, startY] = getCoordinatesForPercent(
+      const [startX, startY] = this.getCoordinatesForPercent(
         cumulativePercent,
         slice.radius
       );
       cumulativePercent += slice.percent;
-      const [endX, endY] = getCoordinatesForPercent(
+      const [endX, endY] = this.getCoordinatesForPercent(
         cumulativePercent,
         slice.radius
       );
@@ -61,11 +92,11 @@ class WellnessWheel extends React.Component {
       return (
         <>
           <path d={pathData} fill={slice.color} key={pathData} />
-          <line x1={endX * radKoef} y1={endY * radKoef} x2={-endX * radKoef} y2={-endY * radKoef} stroke="grey" key={endX + endY} />
         </>
       );
     });
   }
+
 
   render() {
     const { bigRad } = this.state;
@@ -79,6 +110,8 @@ class WellnessWheel extends React.Component {
       >
         {this.drawCircle(bigRad)}
         {this.slice()}
+        {this.drawLines()}
+        {this.addLabels()}
       </svg>
     );
   }
