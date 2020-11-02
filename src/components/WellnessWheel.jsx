@@ -81,7 +81,26 @@ class WellnessWheel extends React.Component {
     return labelPosition.map((position, index) => {
       console.log(position);
       let [textX, textY] = this.getCoordinatesForPercent(position, bigRad);
-      textX = textX > 0 ? textX + 0.2 * bigRad : textX - 0.7 * bigRad;
+
+      if (textX > 0) {
+        textX += 0.1 * bigRad
+      } else {
+        textX -= 0.7 * bigRad;
+        if (labels[index].length > 8) {
+          textX -= 10;
+        }
+      }
+
+      if (bigRad - textY < 10 && position < 0.5) {
+        textY += 10;
+        // if (labels[index].length > 8) {
+        //   textX -= 10;
+        // }
+      }
+
+      // textX = textX > 0 ? textX + 0.1 * bigRad : textX - 0.7 * bigRad;
+      textY = bigRad - textY < 10 && position < 0.5 ? textY + 10 : textY;
+      console.log([textX, textY]);
 
       return (
         <text x={textX} y={textY} key={labels[index]}>
