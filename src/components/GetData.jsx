@@ -1,5 +1,6 @@
 import React from "react";
 import WellnessWheel from "./WellnessWheel";
+import Feedback from "./Feedback";
 import "../stylesheets/GetData.scss";
 
 class GetData extends React.Component {
@@ -138,7 +139,9 @@ class GetData extends React.Component {
 
         {this.state.wheelIsVisible && (
           <div className="wheel">
+            <h1>Your results:</h1>
             <WellnessWheel radiiArr={Object.values(this.state.results)} />
+            <Feedback results={this.state.results} />
             <button onClick={this.resetData}>Try again</button>
           </div>
         )}
