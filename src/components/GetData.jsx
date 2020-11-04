@@ -73,60 +73,47 @@ class GetData extends React.Component {
     );
   }
 
+  renderInputs(option) {
+    let inputs = [];
+    for (let i = 1; i <= 5; i++) {
+      let id = option.slice(0, 3) + i;
+      inputs.push(id);
+    }
+    return inputs.map((input, index) => {
+      return (
+        <span key={input}>
+          <input
+            type="radio"
+            name={option}
+            value={index + 1}
+            id={input}
+            onChange={this.onInputChange}
+          />
+          <label
+            htmlFor={input}
+            className={["background", `${option}`].join(" ")}
+          >
+            {index + 1}
+          </label>
+        </span>
+      );
+    });
+  }
+
   renderOptions() {
     const options = Object.keys(this.state.results);
-    // const colors = [
-    //   "#f46464",
-    //   "#eea755",
-    //   "#53b89a",
-    //   "#008080",
-    //   "#38a9c7",
-    //   "#445588",
-    //   "#d43e8c",
-    //   "#bd121b",
-    // ];
     return options.map((option, ind) => {
-      const renderInputs = () => {
-        let inputs = [];
-        for (let i = 1; i <= 5; i++) {
-          let id = option.slice(0, 3) + i;
-          inputs.push(id);
-        }
-        return inputs.map((input, index) => {
-          return (
-            <span key={input}>
-              <input
-                type="radio"
-                name={option}
-                value={index + 1}
-                id={input}
-                onChange={this.onInputChange}
-              />
-              {/* <label htmlFor={input} style={{ backgroundColor: colors[ind] }}> */}
-              {/* <label htmlFor={input} className={option}> */}
-              <label
-                htmlFor={input}
-                className={["background", `${option}`].join(" ")}
-              >
-                {index + 1}
-              </label>
-            </span>
-          );
-        });
-      };
       return (
-        // <div className="options" key={option}>
         <div className={["option", `${option}`].join(" ")} key={option}>
           <p className="option-name">{option.toUpperCase()} WELLNESS</p>
           {this.renderDescription(option)}
-          <div className="options-buttons">{renderInputs()}</div>
+          <div className="options-buttons">{this.renderInputs(option)}</div>
         </div>
       );
     });
   }
 
   render() {
-    // console.log(this.getResults()); -> [undefined, undefined,...]
     return (
       <>
         {!this.state.wheelIsVisible && (
@@ -152,7 +139,6 @@ class GetData extends React.Component {
         {this.state.wheelIsVisible && (
           <div className="wheel">
             <WellnessWheel radiiArr={Object.values(this.state.results)} />
-            {/* <WellnessWheel radiiArr={this.getResults()} /> */}
             <button onClick={this.resetData}>Try again</button>
           </div>
         )}
