@@ -28,7 +28,7 @@ class WellnessWheel extends React.Component {
           cx="0"
           cy="0"
           r={radius}
-          key={index}
+          key={index + radius}
           fill="#dee2e6"
           stroke="grey"
         />
