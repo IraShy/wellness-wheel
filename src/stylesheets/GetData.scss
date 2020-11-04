@@ -1,39 +1,59 @@
 @import "colors.scss";
 
+label {
+  padding: 4px 11px;
+  margin: 0 2px;
+  border-radius: 4px;
+  opacity: 0.8;
+  font-size: 16px;
+  font-weight: bold;
+}
+.label-in-text {
+  background-color: $wheel-grey;
+}
 form {
-  p {
-    font-size: 18px;
-    font-weight: bold;
+  .option {
+    .option-name {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .options-buttons {
+      margin-bottom: 5px;
+      span {
+        input {
+          display: none;
+        }
+        label {
+          // display: inline-block;
+          cursor: pointer;
+        }
+        input[type="radio"]:checked + label {
+          background-color: transparent;
+        }
+      }
+    }
   }
-  input {
-    display: none;
-  }
-  label {
-    // display: inline-block;
-    padding: 4px 11px;
-    margin: 0 2px;
-    border-radius: 4px;
-    opacity: 0.8;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+
   @each $name, $color in $colors {
     .#{$name} {
-      background-color: $color;
+      .background {
+        background-color: $color;
+      }
       border: $color 2px solid;
     }
   }
-  input[type="radio"]:checked + label {
-    background-color: #dee2e6 ;
-    // border: black 1px solid;
+  .option {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border-bottom-width: 2px 3px 4px 2px;
+    padding: 10px;
   }
 }
 
 button {
   display: block;
   margin-top: 20px;
-  padding: 4px 11px;
+  padding: 7px 11px;
   font-size: 16px;
   background-color: black;
   color: snow;

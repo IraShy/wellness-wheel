@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 // import WellnessWheel from "./WellnessWheel";
 import GetData from "./GetData";
-// import "../style.css";
+import "../stylesheets/App.scss";
 
 export default function App() {
 
