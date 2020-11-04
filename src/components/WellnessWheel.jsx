@@ -1,4 +1,5 @@
 import React from "react";
+import "../stylesheets/WellnessWheel.scss";
 
 class WellnessWheel extends React.Component {
   state = {
@@ -58,8 +59,8 @@ class WellnessWheel extends React.Component {
     });
   }
 
-  addLabels() {
-    const labels = [
+  options() {
+    return ([
       "financial",
       "emotional",
       "occupational",
@@ -68,7 +69,11 @@ class WellnessWheel extends React.Component {
       "social",
       "spiritual",
       "environmental",
-    ];
+    ])
+  }
+
+  addLabels() {
+    const labels = this.options();
     const labelPosition = [];
     const { numberOfSlices, bigRad } = this.state;
     let cumulativePercent = 0.5 / numberOfSlices;
@@ -83,7 +88,7 @@ class WellnessWheel extends React.Component {
       let [textX, textY] = this.getCoordinatesForPercent(position, bigRad);
 
       if (textX > 0) {
-        textX += 0.1 * bigRad
+        textX += 0.1 * bigRad;
       } else {
         textX -= 0.7 * bigRad;
         if (labels[index].length > 8) {
@@ -112,12 +117,13 @@ class WellnessWheel extends React.Component {
 
   slice() {
     let slices = [];
-    const { radiiArr, numberOfSlices, colorArr } = this.state;
+    const options = this.options();
+    const { radiiArr, numberOfSlices } = this.state;
 
     for (let i = 0; i < numberOfSlices; i++) {
       slices.push({
         percent: 1 / numberOfSlices,
-        color: colorArr[i],
+        option: options[i],
         radius: radiiArr[i],
       });
     }
@@ -136,13 +142,13 @@ class WellnessWheel extends React.Component {
       );
       const largeArcFlag = slice.percent > 0.5 ? 1 : 0;
       const pathData = [
-        `M ${startX} ${startY}`, // Move
-        `A ${slice.radius} ${slice.radius} 0  ${largeArcFlag} 1 ${endX} ${endY}`, // Arc
-        "L 0 0", // Line
+        `M ${startX} ${startY}`, 
+        `A ${slice.radius} ${slice.radius} 0  ${largeArcFlag} 1 ${endX} ${endY}`, 
+        "L 0 0", 
       ].join(" ");
       return (
         <>
-          <path d={pathData} fill={slice.color} key={pathData} />
+          <path d={pathData} className={slice.option} key={pathData} />
         </>
       );
     });

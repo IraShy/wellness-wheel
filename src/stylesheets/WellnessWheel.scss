@@ -1,0 +1,7 @@
+@import "colors.scss";
+
+@each $name, $color in $colors {
+  .#{$name} {
+    fill: $color;
+  }
+}
