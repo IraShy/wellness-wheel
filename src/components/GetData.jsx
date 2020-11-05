@@ -68,7 +68,7 @@ class GetData extends React.Component {
         "Living in safe and comfortable conditions as the result of taking care of your global environment and personal surroundings. Using resources responsibly.",
     };
     return (
-      <div>
+      <div className="description">
         <p>{description[option]}</p>
       </div>
     );
@@ -118,8 +118,8 @@ class GetData extends React.Component {
     return (
       <>
         {!this.state.wheelIsVisible && (
-          <>
-            <p>
+          <div className="container">
+            <p id="instruction">
               Pick one option for each field, with{" "}
               <span>
                 <label className="label-in-text">1</label>
@@ -131,10 +131,10 @@ class GetData extends React.Component {
               being the best possible state:
             </p>
             <form onSubmit={this.onFormSubmit}>
-              {this.renderOptions()}
+              <div className="wrap-container">{this.renderOptions()}</div>
               <button type="submit">Submit</button>
             </form>
-          </>
+          </div>
         )}
 
         {this.state.wheelIsVisible && (

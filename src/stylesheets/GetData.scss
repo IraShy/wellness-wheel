@@ -1,62 +1,104 @@
 @import "colors.scss";
 
-label {
-  padding: 4px 11px;
-  margin: 0 2px;
-  border-radius: 4px;
-  opacity: 0.8;
-  font-size: 16px;
-  font-weight: bold;
-}
-.label-in-text {
-  background-color: $wheel-grey;
-}
-form {
-  .option {
-    .option-name {
-      font-size: 18px;
-      font-weight: bold;
+.container {
+  margin: auto;
+  max-width: 1500px;
+  text-align: center;
+  #instruction {
+    // text-align: center;
+    font-size: larger;
+    font-style: italic;
+    font-weight: bold;
+    line-height: 30px;
+    display: inline-block;
+    border-bottom: lightcoral 4px solid;
+    border-top: lightcoral 3px solid;
+    // background-color: $button;
+    // color: $button-text;
+    margin: 30px 30px 20px 30px;
+    // margin: auto;
+    .label-in-text {
+      background-color: $wheel-grey;
+      color: black;
+      font-style: initial;
     }
-    .options-buttons {
-      margin-bottom: 5px;
-      span {
-        input {
-          display: none;
+  }
+  label {
+    padding: 4px 11px;
+    margin: 0 2px;
+    border-radius: 4px;
+    opacity: 0.8;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  form {
+    // margin: auto;
+    // max-width: 900px;
+    .wrap-container {
+      display: flex;
+      flex-wrap: wrap;
+      // align-items: center; makes the boxes different in height
+      // align-content: center; no changes
+      // justify-items: center; no changes
+      justify-content: center;
+      .option {
+        width: 320px;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        .option-name {
+          font-size: 18px;
+          font-weight: bold;
         }
-        label {
-          // display: inline-block;
-          cursor: pointer;
+        .description {
+          line-height: 20px;
+          text-align: left;
+          height: 95px;
         }
-        input[type="radio"]:checked + label {
-          background-color: transparent;
+        .options-buttons {
+          margin-bottom: 5px;
+          position: relative;
+          bottom: 5px;
+          span {
+            input {
+              display: none;
+            }
+            label {
+              // display: inline-block;
+              cursor: pointer;
+            }
+            input[type="radio"]:checked + label {
+              background-color: transparent;
+            }
+          }
         }
+      }
+
+      @each $name, $color in $colors {
+        .#{$name} {
+          .background {
+            background-color: $color;
+          }
+          border: $color 2px solid;
+        }
+      }
+      .option {
+        border-width: 2px 3px 4px 2px;
       }
     }
   }
 
-  @each $name, $color in $colors {
-    .#{$name} {
-      .background {
-        background-color: $color;
-      }
-      border: $color 2px solid;
-    }
-  }
-  .option {
-    margin-bottom: 10px;
-    border-radius: 10px;
-    border-bottom-width: 2px 3px 4px 2px;
-    padding: 10px;
-  }
 }
-
-button {
-  display: block;
-  margin-top: 20px;
-  padding: 7px 11px;
-  font-size: 16px;
-  background-color: black;
-  color: snow;
-  border-style: none;
-  border-radius: 4px;
-}
+  button {
+    display: block;
+    margin-top: 20px;
+    padding: 7px 11px;
+    font-size: 20px;
+    background-color: $button;
+    color: $button-text;
+    border-style: none;
+    border-radius: 4px;
+    // margin: auto;
+    // margin-top: 15px;
+    margin: 15px auto;
+  }
