@@ -1,14 +1,23 @@
 $colors: (
-  "financial": #f46464,
-  "emotional": #eea755,
-  "occupational": #53b89a,
-  "physical": #008080,
-  "intellectual": #38a9c7,
-  "social": #445588,
-  "spiritual": #d43e8c,
-  "environmental": #bd121b,
+  // "financial": #f46464,
+  // "emotional": #eea755,
+  // "occupational": #53b89a,
+  // "physical": #008080,
+  // "intellectual": #38a9c7,
+  // "social": #445588,
+  // "spiritual": #d43e8c,
+  // "environmental": #bd121b,
+  "financial": rgb(248, 35, 35),
+  "emotional": orange,
+  "occupational": rgb(147, 248, 52),
+  "physical": green,
+  "intellectual": rgb(47, 186, 233),
+  "social": rgb(45, 45, 230),
+  "spiritual": rgb(193, 74, 240),
+  "environmental": rgb(255, 0, 170)
 );
 
 $wheel-grey: #dee2e6;
 $button: lightcoral;
 $button-text: snow;
+$stroke: rgba(17, 17, 17, 0.815);

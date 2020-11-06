@@ -5,3 +5,27 @@
     fill: $color;
   }
 }
+.wheel {
+  h1 {
+    text-align: center;
+  }
+  .results-container {
+    display: flex;
+    svg {
+      #big {
+        fill: $wheel-grey;
+      }
+      line {
+        stroke: $stroke;
+      }
+      circle {
+        stroke: $stroke;
+        fill: transparent;
+      }
+    }
+    .feedback {
+      // text-align: center;
+      margin: auto;
+    }
+  }
+}
