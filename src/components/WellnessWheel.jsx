@@ -20,7 +20,7 @@ class WellnessWheel extends React.Component {
 
   drawCircle(bigRad) {
     let circles = [];
-    for (let koef = 0.2; koef <= 1; koef += 0.2) {
+    for (let koef = 0.2; koef < 1; koef += 0.2) {
       circles.unshift(Math.round(koef * bigRad));
     }
     return circles.map((radius, index) => {
@@ -30,8 +30,7 @@ class WellnessWheel extends React.Component {
           cy="0"
           r={radius}
           key={index + radius}
-          fill="#dee2e6"
-          stroke="grey"
+          // fill="transparent"
         />
       );
     });
@@ -55,12 +54,12 @@ class WellnessWheel extends React.Component {
 
     return lines.map((line) => {
       const [x1, y1] = this.getCoordinatesForPercent(line, bigRad);
-      return <line x1={x1} y1={y1} x2={0} y2={0} stroke="grey" key={line} />;
+      return <line x1={x1} y1={y1} x2={0} y2={0} key={line} />;
     });
   }
 
   options() {
-    return ([
+    return [
       "financial",
       "emotional",
       "occupational",
@@ -69,7 +68,7 @@ class WellnessWheel extends React.Component {
       "social",
       "spiritual",
       "environmental",
-    ])
+    ];
   }
 
   addLabels() {
@@ -84,7 +83,6 @@ class WellnessWheel extends React.Component {
     }
 
     return labelPosition.map((position, index) => {
-      console.log(position);
       let [textX, textY] = this.getCoordinatesForPercent(position, bigRad);
 
       if (textX > 0) {
@@ -105,7 +103,6 @@ class WellnessWheel extends React.Component {
 
       // textX = textX > 0 ? textX + 0.1 * bigRad : textX - 0.7 * bigRad;
       textY = bigRad - textY < 10 && position < 0.5 ? textY + 10 : textY;
-      console.log([textX, textY]);
 
       return (
         <text x={textX} y={textY} key={labels[index]}>
@@ -142,9 +139,9 @@ class WellnessWheel extends React.Component {
       );
       const largeArcFlag = slice.percent > 0.5 ? 1 : 0;
       const pathData = [
-        `M ${startX} ${startY}`, 
-        `A ${slice.radius} ${slice.radius} 0  ${largeArcFlag} 1 ${endX} ${endY}`, 
-        "L 0 0", 
+        `M ${startX} ${startY}`,
+        `A ${slice.radius} ${slice.radius} 0  ${largeArcFlag} 1 ${endX} ${endY}`,
+        "L 0 0",
       ].join(" ");
       return (
         <>
@@ -166,8 +163,9 @@ class WellnessWheel extends React.Component {
         `}
         width={400}
       >
-        {this.drawCircle(bigRad)}
+        <circle cx="0" cy="0" r={bigRad} id="big" />
         {this.slice()}
+        {this.drawCircle(bigRad)}
         {this.drawLines()}
         {this.addLabels()}
       </svg>
