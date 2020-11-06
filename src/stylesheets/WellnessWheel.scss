@@ -3,15 +3,33 @@
 @each $name, $color in $colors {
   .#{$name} {
     fill: $color;
+    li::before {
+      color: $color;
+    }
+    .option-name {
+      border-bottom: $color 2px solid;
+    }
   }
 }
 .wheel {
+  font-size: 17px;
   h1 {
     text-align: center;
+    width: 400px;
+    margin: 30px auto 0px;
+    // display: inline-block;
+    border-bottom: $button 4px solid;
+    border-top: $button 3px solid;
   }
   .results-container {
-    display: flex;
+    // display: flex;
+    padding: 0px 10px 10px 10px;
+    margin: auto;
+    max-width: 800px;
+    // text-align: center;
     svg {
+      display: block;
+      margin: auto;
       #big {
         fill: $wheel-grey;
       }
@@ -27,6 +45,32 @@
     .feedback {
       // text-align: center;
       margin: auto;
+      #general-feedback {
+        text-align: center;
+        border-bottom: $button 4px solid;
+        border-top: $button 3px solid;
+        font-size: 20px;
+        padding: 20px 0px;
+      }
+      .tips {
+        margin: 40px 0px;
+        ul {
+          list-style: none; /* Remove default bullets */
+        }
+        ul li::before {
+          content: "\2022"; 
+          font-weight: bold; 
+          font-size: 24px;
+          display: inline-block; 
+          width: 1em; 
+          margin-left: -1em; 
+        }
+        .option-name {
+          font-size: 18px;
+          font-weight: bold;
+          padding-left: 2em;
+        }
+      }
     }
   }
 }

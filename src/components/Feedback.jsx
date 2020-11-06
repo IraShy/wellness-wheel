@@ -6,17 +6,17 @@ class Feedback extends React.Component {
     const results = Object.values(this.props.results);
     if (results.every((num) => num < 4)) {
       return (
-        <p>
+        <p id="general-feedback">
           It seems that you're struggling, your answers indicate some potential
           health and well-being risks. Here are some tips how you can improve
           wellness areas:
         </p>
       );
     } else if (results.every((num) => num > 3)) {
-      return <p>Awesome, you're thriving! Well done!</p>;
+      return <p id="general-feedback">Awesome, you're thriving! Well done!</p>;
     } else {
       return (
-        <p>
+        <p id="general-feedback">
           Not bad, but there is room for improvement! Review the areas where you
           are struggling. Here are some tips how you can improve them:
         </p>
@@ -40,8 +40,10 @@ class Feedback extends React.Component {
     console.log(improvements);
     return results.map((result) => {
       return (
-        <div key={[`result`, result].join("")}>
-          <p>{result.toUpperCase()}:</p>
+        <div className={["tips", result].join(' ')} key={[`result`, result].join("")}>
+          <p className="option-name">
+            {result.toUpperCase()}:
+          </p>
           <ul>{this.renderList(improvements[result])}</ul>
         </div>
       );
