@@ -1,6 +1,7 @@
 import React from "react";
 import WellnessWheel from "./WellnessWheel";
 import Feedback from "./Feedback";
+import { descript } from "./Texts.js";
 import "../stylesheets/GetData.scss";
 
 class GetData extends React.Component {
@@ -50,23 +51,7 @@ class GetData extends React.Component {
   };
 
   renderDescription(option) {
-    const description = {
-      financial:
-        "Your financial circumstances. Living within your financial means. Budgeting, planning, having a safety net.",
-      emotional:
-        "Understanding your feelings and emotions, being able to manage stress levels and resolve conflicts.",
-      occupational:
-        "Satisfaction with your job and career. Having realistic self-expectations, being happy with what you do, having a goal and a purpose.",
-      physical: `Your overall physical condition. Things to think about: regular exercises, balanced diet, healthy sleep schedule, stress management, regular check-ups (dental, skin, sexual health, etc.)`,
-      intellectual:
-        "Having a desire to learn new concepts and skills, being open-minded, engaging in mentally-stimulating activities and reflective practices.",
-      social:
-        "Maintaining your personal community, feeling connected in your relationships.",
-      spiritual:
-        "Having a positive mindset. Practising personal development, being mindful and kind.",
-      environmental:
-        "Living in safe and comfortable conditions as the result of taking care of your global environment and personal surroundings. Using resources responsibly.",
-    };
+    const description = descript[0];
     return (
       <div className="description">
         <p>{description[option]}</p>
@@ -103,7 +88,7 @@ class GetData extends React.Component {
 
   renderOptions() {
     const options = Object.keys(this.state.results);
-    return options.map((option, ind) => {
+    return options.map((option) => {
       return (
         <div className={["option", `${option}`].join(" ")} key={option}>
           <p className="option-name">{option.toUpperCase()} WELLNESS</p>
@@ -140,8 +125,10 @@ class GetData extends React.Component {
         {this.state.wheelIsVisible && (
           <div className="wheel">
             <h1>Your results:</h1>
-            <WellnessWheel radiiArr={Object.values(this.state.results)} />
-            <Feedback results={this.state.results} />
+            <div className="results-container">
+              <WellnessWheel radiiArr={Object.values(this.state.results)} />
+              <Feedback results={this.state.results} />
+            </div>
             <button onClick={this.resetData}>Try again</button>
           </div>
         )}

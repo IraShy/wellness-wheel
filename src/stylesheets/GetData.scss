@@ -2,7 +2,7 @@
 
 .container {
   margin: auto;
-  max-width: 1500px;
+  max-width: 800px;
   text-align: center;
   #instruction {
     // text-align: center;
@@ -11,8 +11,8 @@
     font-weight: bold;
     line-height: 30px;
     display: inline-block;
-    border-bottom: lightcoral 4px solid;
-    border-top: lightcoral 3px solid;
+    border-bottom: $button 4px solid;
+    border-top: $button 3px solid;
     // background-color: $button;
     // color: $button-text;
     margin: 30px 30px 20px 30px;
