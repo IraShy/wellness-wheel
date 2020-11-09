@@ -1,9 +1,8 @@
 import getCoordinatesForPercent from "./getCoordinatesForPercent";
 
-export default function addLabels(labels, numberOfSlices, bigRad) {
-  // const labels = this.getOptions();
+export default function addLabels(labels, bigRad) {
   const labelPosition = [];
-  // const numberOfSlices = this.getNumberOfSlices();
+  const numberOfSlices = labels.length;
   let cumulativePercent = 0.5 / numberOfSlices;
 
   for (let i = 0; i < labels.length; i++) {
