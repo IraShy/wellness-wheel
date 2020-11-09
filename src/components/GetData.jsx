@@ -17,10 +17,11 @@ class GetData extends React.Component {
       environmental: 0,
     },
     wheelIsVisible: false,
-    errMessage: "",
   };
 
-  scrollToTop() {window.scrollTo(0, 0);}
+  scrollToTop() {
+    window.scrollTo(0, 0);
+  }
 
   onInputChange = (event) => {
     this.setState({
@@ -50,7 +51,9 @@ class GetData extends React.Component {
       },
       wheelIsVisible: false,
     });
-    {this.scrollToTop()}
+    {
+      this.scrollToTop();
+    }
   };
 
   renderDescription(option) {
@@ -103,7 +106,6 @@ class GetData extends React.Component {
   }
 
   render() {
-    // window.scrollTo(0, 0);
     return (
       <>
         {!this.state.wheelIsVisible && (
@@ -128,9 +130,11 @@ class GetData extends React.Component {
 
         {this.state.wheelIsVisible && (
           <div className="wheel">
-            <h1 style={{width:window.screen.width > 450 ? 450 : `90%`}}>Your results:</h1> 
+            <h1 style={{ width: window.screen.width > 450 ? 450 : `90%` }}>
+              Your results:
+            </h1>
             <div className="results-container">
-              <WellnessWheel radiiArr={Object.values(this.state.results)} />
+              <WellnessWheel results={this.state.results} />
               <Feedback results={this.state.results} />
             </div>
             <button onClick={this.resetData}>Try again</button>

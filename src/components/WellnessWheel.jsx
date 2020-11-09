@@ -1,12 +1,17 @@
 import React from "react";
 import "../stylesheets/WellnessWheel.scss";
 
+const bigRad = 100;
+
 class WellnessWheel extends React.Component {
-  state = {
-    bigRad: 100,
-    radiiArr: this.props.radiiArr.map((rad) => rad * 20),
-    numberOfSlices: this.props.radiiArr.length,
-  };
+  getOptions() {
+    const results = this.props.results;
+    return Object.keys(results);
+  }
+
+  getNumberOfSlices() {
+    return this.getOptions().length;
+  }
 
   drawCircle(bigRad) {
     let circles = [];
@@ -20,7 +25,6 @@ class WellnessWheel extends React.Component {
           cy="0"
           r={radius}
           key={index + radius}
-          // fill="transparent"
         />
       );
     });
@@ -34,7 +38,7 @@ class WellnessWheel extends React.Component {
 
   drawLines() {
     let lines = [];
-    const { bigRad, numberOfSlices } = this.state;
+    const numberOfSlices = this.getNumberOfSlices();
 
     let cumulativePercent = 0;
     for (let i = 0; i < numberOfSlices; i++) {
@@ -48,23 +52,10 @@ class WellnessWheel extends React.Component {
     });
   }
 
-  options() {
-    return [
-      "financial",
-      "emotional",
-      "occupational",
-      "physical",
-      "intellectual",
-      "social",
-      "spiritual",
-      "environmental",
-    ];
-  }
-
   addLabels() {
-    const labels = this.options();
+    const labels = this.getOptions();
     const labelPosition = [];
-    const { numberOfSlices, bigRad } = this.state;
+    const numberOfSlices = this.getNumberOfSlices();
     let cumulativePercent = 0.5 / numberOfSlices;
 
     for (let i = 0; i < labels.length; i++) {
@@ -86,12 +77,8 @@ class WellnessWheel extends React.Component {
 
       if (bigRad - textY < 10 && position < 0.5) {
         textY += 10;
-        // if (labels[index].length > 8) {
-        //   textX -= 10;
-        // }
       }
 
-      // textX = textX > 0 ? textX + 0.1 * bigRad : textX - 0.7 * bigRad;
       textY = bigRad - textY < 10 && position < 0.5 ? textY + 10 : textY;
 
       return (
@@ -104,8 +91,10 @@ class WellnessWheel extends React.Component {
 
   slice() {
     let slices = [];
-    const options = this.options();
-    const { radiiArr, numberOfSlices } = this.state;
+    const results = this.props.results;
+    const numberOfSlices = this.getNumberOfSlices();
+    const radiiArr = Object.values(results).map((rad) => rad * 20);
+    const options = this.getOptions();
 
     for (let i = 0; i < numberOfSlices; i++) {
       slices.push({
@@ -143,17 +132,13 @@ class WellnessWheel extends React.Component {
 
   render() {
     window.scrollTo(0, 0);
-    const { bigRad } = this.state;
     return (
-      // <svg viewBox="-105 -105 210 210">
       <svg
         viewBox={`
           ${-bigRad - 100} ${-bigRad - 100} ${bigRad * 2 + 220} ${
           bigRad * 2 + 130
         }
         `}
-        // preserveAspectRatio="xMidYMid meet"
-        // width={400}
         width={window.screen.width > 500 ? 500 : `100%`}
       >
         <circle cx="0" cy="0" r={bigRad} id="big" />
