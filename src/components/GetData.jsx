@@ -100,6 +100,7 @@ class GetData extends React.Component {
   }
 
   render() {
+    window.scrollTo(0, 0);
     return (
       <>
         {!this.state.wheelIsVisible && (

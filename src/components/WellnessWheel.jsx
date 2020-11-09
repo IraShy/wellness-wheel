@@ -142,6 +142,7 @@ class WellnessWheel extends React.Component {
   }
 
   render() {
+    window.scrollTo(0, 0);
     const { bigRad } = this.state;
     return (
       // <svg viewBox="-105 -105 210 210">
