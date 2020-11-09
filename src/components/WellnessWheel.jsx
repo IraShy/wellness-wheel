@@ -147,11 +147,13 @@ class WellnessWheel extends React.Component {
       // <svg viewBox="-105 -105 210 210">
       <svg
         viewBox={`
-          ${-bigRad - 100} ${-bigRad - 100} ${bigRad * 2 + 200} ${
-          bigRad * 2 + 200
+          ${-bigRad - 100} ${-bigRad - 100} ${bigRad * 2 + 220} ${
+          bigRad * 2 + 130
         }
         `}
-        width={400}
+        // preserveAspectRatio="xMidYMid meet"
+        // width={400}
+        width={window.screen.width > 500 ? 500 : `100%`}
       >
         <circle cx="0" cy="0" r={bigRad} id="big" />
         {this.slice()}
