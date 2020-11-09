@@ -124,7 +124,7 @@ class GetData extends React.Component {
 
         {this.state.wheelIsVisible && (
           <div className="wheel">
-            <h1>Your results:</h1>
+            <h1 style={{width:window.screen.width > 450 ? 450 : `90%`}}>Your results:</h1> 
             <div className="results-container">
               <WellnessWheel radiiArr={Object.values(this.state.results)} />
               <Feedback results={this.state.results} />

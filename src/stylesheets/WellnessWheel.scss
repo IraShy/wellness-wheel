@@ -15,7 +15,8 @@
   font-size: 17px;
   h1 {
     text-align: center;
-    width: 400px;
+    // width: 90%;
+    // width: fit-content;
     margin: 30px auto 0px;
     // display: inline-block;
     border-bottom: $button 4px solid;
@@ -56,6 +57,10 @@
         margin: 40px 0px;
         ul {
           list-style: none; /* Remove default bullets */
+          padding-right: 10px;
+          li {
+            text-align: justify;
+          }
         }
         ul li::before {
           content: "\2022"; 
