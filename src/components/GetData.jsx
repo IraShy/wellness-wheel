@@ -20,6 +20,8 @@ class GetData extends React.Component {
     errMessage: "",
   };
 
+  scrollToTop() {window.scrollTo(0, 0);}
+
   onInputChange = (event) => {
     this.setState({
       results: {
@@ -48,6 +50,7 @@ class GetData extends React.Component {
       },
       wheelIsVisible: false,
     });
+    {this.scrollToTop()}
   };
 
   renderDescription(option) {
@@ -100,7 +103,7 @@ class GetData extends React.Component {
   }
 
   render() {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     return (
       <>
         {!this.state.wheelIsVisible && (
