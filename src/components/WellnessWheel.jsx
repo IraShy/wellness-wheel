@@ -1,5 +1,7 @@
 import React from "react";
 import "../stylesheets/WellnessWheel.scss";
+import drawCircle from "../shared/drawCircle";
+import getCoordinatesForPercent from "../shared/getCoordinatesForPercent";
 
 const bigRad = 100;
 
@@ -13,29 +15,6 @@ class WellnessWheel extends React.Component {
     return this.getOptions().length;
   }
 
-  drawCircle(bigRad) {
-    let circles = [];
-    for (let koef = 0.2; koef < 1; koef += 0.2) {
-      circles.unshift(Math.round(koef * bigRad));
-    }
-    return circles.map((radius, index) => {
-      return (
-        <circle
-          cx="0"
-          cy="0"
-          r={radius}
-          key={index + radius}
-        />
-      );
-    });
-  }
-
-  getCoordinatesForPercent(percent, radius) {
-    const x = radius * Math.cos(2 * Math.PI * percent);
-    const y = radius * Math.sin(2 * Math.PI * percent);
-    return [x, y];
-  }
-
   drawLines() {
     let lines = [];
     const numberOfSlices = this.getNumberOfSlices();
@@ -47,7 +26,7 @@ class WellnessWheel extends React.Component {
     }
 
     return lines.map((line) => {
-      const [x1, y1] = this.getCoordinatesForPercent(line, bigRad);
+      const [x1, y1] = getCoordinatesForPercent(line, bigRad);
       return <line x1={x1} y1={y1} x2={0} y2={0} key={line} />;
     });
   }
@@ -64,7 +43,7 @@ class WellnessWheel extends React.Component {
     }
 
     return labelPosition.map((position, index) => {
-      let [textX, textY] = this.getCoordinatesForPercent(position, bigRad);
+      let [textX, textY] = getCoordinatesForPercent(position, bigRad);
 
       if (textX > 0) {
         textX += 0.1 * bigRad;
@@ -107,12 +86,12 @@ class WellnessWheel extends React.Component {
     let cumulativePercent = 0;
 
     return slices.map((slice) => {
-      const [startX, startY] = this.getCoordinatesForPercent(
+      const [startX, startY] = getCoordinatesForPercent(
         cumulativePercent,
         slice.radius
       );
       cumulativePercent += slice.percent;
-      const [endX, endY] = this.getCoordinatesForPercent(
+      const [endX, endY] = getCoordinatesForPercent(
         cumulativePercent,
         slice.radius
       );
@@ -143,7 +122,7 @@ class WellnessWheel extends React.Component {
       >
         <circle cx="0" cy="0" r={bigRad} id="big" />
         {this.slice()}
-        {this.drawCircle(bigRad)}
+        {drawCircle(bigRad)}
         {this.drawLines()}
         {this.addLabels()}
       </svg>
