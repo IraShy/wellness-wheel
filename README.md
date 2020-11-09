@@ -20,6 +20,8 @@ Tips on how to improve are printed out for dimensions where the user selected 3 
 ## **Links**
 The app URL: [https://wellness-wheel.stackblitz.io](https://wellness-wheel.stackblitz.io)
 
+You can play with the code [here](https://stackblitz.com/edit/wellness-wheel?)
+
 
 ## Getting started with the cloned app
 In the terminal, run the following commands:
