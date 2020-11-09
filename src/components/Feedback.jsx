@@ -7,9 +7,9 @@ class Feedback extends React.Component {
     if (results.every((num) => num < 4)) {
       return (
         <p id="general-feedback">
-          It seems that you're struggling, your answers indicate some potential
-          health and well-being risks. Here are some tips how you can improve
-          wellness areas:
+          It seems that you're struggling, your answers indicate potential
+          health and well-being risks. Here are some tips how to improve your
+          wellness dimensions:
         </p>
       );
     } else if (results.every((num) => num > 3)) {
@@ -25,10 +25,7 @@ class Feedback extends React.Component {
   }
   renderList(phrase) {
     const list = phrase.split(". ");
-    console.log(list);
-    console.log(phrase);
     return list.map((sentence) => {
-      console.log(sentence);
       return <li key={sentence}>{sentence}</li>;
     });
   }
@@ -37,13 +34,13 @@ class Feedback extends React.Component {
       .filter((pair) => pair[1] < 4)
       .map((el) => el[0]);
     const improvements = improve[0];
-    console.log(improvements);
     return results.map((result) => {
       return (
-        <div className={["tips", result].join(' ')} key={[`result`, result].join("")}>
-          <p className="option-name">
-            {result.toUpperCase()}:
-          </p>
+        <div
+          className={["tips", result].join(" ")}
+          key={[`result`, result].join("")}
+        >
+          <p className="option-name">{result.toUpperCase()}:</p>
           <ul>{this.renderList(improvements[result])}</ul>
         </div>
       );
