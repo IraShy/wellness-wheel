@@ -4,6 +4,7 @@ import drawCircle from "../shared/drawCircle";
 import drawLines from "../shared/drawLines";
 import addLabels from "../shared/addLabels";
 import slice from "../shared/slice";
+import scrollToTop from "../shared/scrollToTop";
 
 const bigRad = 100;
 
@@ -13,7 +14,7 @@ class WellnessWheel extends React.Component {
     const options = Object.keys(results);
     const numberOfSlices = options.length;
 
-    window.scrollTo(0, 0);
+    scrollToTop();
     return (
       <svg
         viewBox={`

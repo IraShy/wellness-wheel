@@ -1,5 +1,5 @@
 import React from "react";
-import { improve } from "./Texts.js";
+import { improve } from "../shared/Texts.js";
 
 class Feedback extends React.Component {
   checkResults() {
