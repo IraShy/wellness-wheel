@@ -15,7 +15,6 @@ export default function slice(results) {
   }
 
   let cumulativePercent = 0;
-
   return slices.map((slice) => {
     const [startX, startY] = getCoordinatesForPercent(
       cumulativePercent,
@@ -34,7 +33,7 @@ export default function slice(results) {
     ].join(" ");
     return (
       <>
-        <path d={pathData} className={slice.option} key={pathData} />
+        <path d={pathData} className={slice.option} key={slice.option} />
       </>
     );
   });
