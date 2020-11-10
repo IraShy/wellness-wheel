@@ -25,10 +25,9 @@ export default function slice(results) {
       cumulativePercent,
       slice.radius
     );
-    const largeArcFlag = slice.percent > 0.5 ? 1 : 0;
     const pathData = [
       `M ${startX} ${startY}`,
-      `A ${slice.radius} ${slice.radius} 0  ${largeArcFlag} 1 ${endX} ${endY}`,
+      `A ${slice.radius} ${slice.radius} 0 0 1 ${endX} ${endY}`,
       "L 0 0",
     ].join(" ");
     return (
