@@ -1,3 +1,4 @@
+import React from "react";
 import { descript } from "./Texts.js";
 
 export function renderDescription(option) {

@@ -1,3 +1,4 @@
+import React from "react";
 import getCoordinatesForPercent from "./getCoordinatesForPercent";
 
 export default function addLabels(labels, bigRad) {

@@ -1,10 +1,10 @@
 import React from "react";
 import "../stylesheets/WellnessWheel.scss";
-import drawCircle from "../shared/drawCircle";
-import drawLines from "../shared/drawLines";
-import addLabels from "../shared/addLabels";
-import slice from "../shared/slice";
-import scrollToTop from "../shared/scrollToTop";
+import drawCircle from "./drawCircle";
+import drawLines from "./drawLines";
+import addLabels from "./addLabels";
+import slice from "./slice";
+import scrollToTop from "./scrollToTop";
 
 const bigRad = 100;
 

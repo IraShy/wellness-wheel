@@ -1,3 +1,4 @@
+import React from "react";
 export default function drawCircle(bigRad) {
   let circles = [];
   for (let koef = 0.2; koef < 1; koef += 0.2) {

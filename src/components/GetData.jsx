@@ -2,8 +2,8 @@ import React from "react";
 import WellnessWheel from "./WellnessWheel";
 import Feedback from "./Feedback";
 import "../stylesheets/GetData.scss";
-import scrollToTop from "../shared/scrollToTop";
-import { renderDescription, renderInputs } from "../shared/renderFormCards";
+import scrollToTop from "./scrollToTop";
+import { renderDescription, renderInputs } from "./renderFormCards";
 
 const initialState = {
   results: {

@@ -1,5 +1,5 @@
 import React from "react";
-import { improve } from "../shared/Texts.js";
+import { improve } from "./Texts.js";
 
 class RenderTips extends React.Component {
   renderList(phrase) {
