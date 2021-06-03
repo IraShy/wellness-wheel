@@ -1,4 +1,4 @@
-@import "colors.scss";
+@import 'colors.scss';
 
 .container {
   margin: auto;
@@ -12,6 +12,7 @@
     display: inline-block;
     border-bottom: $button 4px solid;
     border-top: $button 3px solid;
+    border-radius: 400px /10px;
     margin: 30px 30px 20px 30px;
     .label-in-text {
       background-color: $wheel-grey;
@@ -40,6 +41,7 @@
         .option-name {
           font-size: 18px;
           font-weight: bold;
+          border-radius: 400px /10px 5px;
         }
         .description {
           line-height: 20px;
@@ -57,7 +59,7 @@
             label {
               cursor: pointer;
             }
-            input[type="radio"]:checked + label {
+            input[type='radio']:checked + label {
               background-color: transparent;
             }
           }
@@ -74,6 +76,7 @@
       }
       .option {
         border-width: 2px 3px 4px 2px;
+        border-radius: 400px 10px/10px 500px;
       }
     }
   }
